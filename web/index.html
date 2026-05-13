@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24423e">
+  <meta name="description" content="ROUSTAN ROBERT is a local Android operations app for quality checks, resource allocation, lead management, and shipment logs.">
+  <title>ROUSTAN ROBERT</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    :root {
+      --ink: #19212a;
+      --muted: #5d6661;
+      --brand: #24423e;
+      --brand-strong: #19212a;
+      --accent: #b77838;
+      --green: #2c6d63;
+      --risk: #9d3d2e;
+      --paper: #f8f4ec;
+      --surface: #ffffff;
+      --line: #d9ded7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(25, 33, 42, 0.08);
+      background: rgba(248, 244, 236, 0.94);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      width: min(1120px, calc(100% - 32px));
+      min-height: 68px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .hero {
+      width: min(1120px, calc(100% - 32px));
+      min-height: calc(100vh - 96px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+      gap: 38px;
+      align-items: center;
+      padding: 42px 0 70px;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin: 12px 0 18px;
+      color: var(--brand-strong);
+      font-size: clamp(2.6rem, 7vw, 5.8rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 620px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.16rem;
+    }
+
+    .actions {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border-radius: 8px;
+      font-weight: 850;
+      border: 1px solid var(--brand);
+    }
+
+    .button.primary {
+      color: #fff;
+      background: var(--brand);
+    }
+
+    .button.secondary {
+      color: var(--brand);
+      background: transparent;
+    }
+
+    .phone-frame {
+      width: min(100%, 410px);
+      justify-self: center;
+      aspect-ratio: 9 / 16;
+      border-radius: 34px;
+      padding: 14px;
+      background: var(--ink);
+      box-shadow: 0 28px 80px rgba(25, 33, 42, 0.24);
+    }
+
+    .phone-screen {
+      height: 100%;
+      overflow: hidden;
+      border-radius: 24px;
+      background: var(--paper);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .phone-screen img {
+      width: 100%;
+      height: 33%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .phone-content {
+      padding: 18px;
+    }
+
+    .phone-title {
+      font-weight: 900;
+      font-size: 1.18rem;
+    }
+
+    .metric-grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric {
+      min-height: 82px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--brand);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .band {
+      border-top: 1px solid rgba(25, 33, 42, 0.08);
+      background: var(--surface);
+    }
+
+    .section {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 58px 0;
+    }
+
+    .section h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .section p {
+      color: var(--muted);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .feature {
+      min-height: 190px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+    }
+
+    .feature mark {
+      display: inline-flex;
+      width: 34px;
+      height: 34px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--brand);
+      font-weight: 900;
+    }
+
+    .feature h3 {
+      margin: 16px 0 8px;
+      font-size: 1rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 30px;
+      align-items: center;
+    }
+
+    .wide-image {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      object-fit: cover;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 10px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      padding: 14px 16px;
+      border-left: 4px solid var(--accent);
+      background: rgba(183, 120, 56, 0.1);
+      border-radius: 8px;
+      font-weight: 750;
+    }
+
+    footer {
+      border-top: 1px solid rgba(25, 33, 42, 0.08);
+      padding: 28px 0;
+      color: var(--muted);
+      background: var(--paper);
+    }
+
+    footer .section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0;
+    }
+
+    @media (max-width: 840px) {
+      .navlinks {
+        display: none;
+      }
+
+      .hero,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 28px;
+      }
+
+      .phone-frame {
+        width: min(100%, 360px);
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer .section,
+      .actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#">
+        <img src="favicon.png" alt="">
+        <span>ROUSTAN ROBERT</span>
+      </a>
+      <div class="navlinks">
+        <a href="#workflow">Workflow</a>
+        <a href="#privacy">Privacy</a>
+        <a href="mailto:support@roustanrobert.com">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Business operations app</span>
+        <h1>ROUSTAN ROBERT</h1>
+        <p class="lead">A local Android workspace for quality control checklists, resource allocation, lead follow-up, and shipment logs. Built for focused daily reviews without accounts, cloud sync, or external APIs.</p>
+        <div class="actions">
+          <a class="button primary" href="mailto:support@roustanrobert.com">Request app access</a>
+          <a class="button secondary" href="#workflow">View workflow</a>
+        </div>
+      </div>
+      <div class="phone-frame" aria-label="ROUSTAN ROBERT app preview">
+        <div class="phone-screen">
+          <img src="featured.png" alt="">
+          <div class="phone-content">
+            <div class="phone-title">Daily command board</div>
+            <div class="metric-grid">
+              <div class="metric"><strong>2</strong><span>Open checks</span></div>
+              <div class="metric"><strong>1</strong><span>High loads</span></div>
+              <div class="metric"><strong>2</strong><span>Active leads</span></div>
+              <div class="metric"><strong>1</strong><span>Shipment risks</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="workflow">
+      <div class="section">
+        <h2>One board for daily operations.</h2>
+        <p>ROUSTAN ROBERT keeps each team's working records together so managers can review issues, capacity, customer follow-up, and dispatch status from the same phone.</p>
+        <div class="feature-grid">
+          <article class="feature">
+            <mark>1</mark>
+            <h3>Quality control</h3>
+            <p>Create checklists, assign owners, track progress, and keep handoff notes visible.</p>
+          </article>
+          <article class="feature">
+            <mark>2</mark>
+            <h3>Resource allocation</h3>
+            <p>Review shift loads and spot overextended teams before work piles up.</p>
+          </article>
+          <article class="feature">
+            <mark>3</mark>
+            <h3>Lead management</h3>
+            <p>Keep active prospects, stages, values, and next actions close to daily planning.</p>
+          </article>
+          <article class="feature">
+            <mark>4</mark>
+            <h3>Shipment log</h3>
+            <p>Monitor references, destinations, carton counts, ETAs, and delayed movements.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section split" id="privacy">
+      <div>
+        <h2>Local records, practical controls.</h2>
+        <p>The Android app stores operational records and preferences on the device. It does not require account registration, cloud sync, analytics, advertising identifiers, location, contacts, microphone, photos, payments, health data, or network APIs.</p>
+        <ul class="checklist">
+          <li>Designed for quick checks during shift handoff.</li>
+          <li>Runs as a native Flutter Android app.</li>
+          <li>Includes a plain privacy view inside settings.</li>
+        </ul>
+      </div>
+      <img class="wide-image" src="featured.png" alt="ROUSTAN ROBERT operations graphic">
+    </section>
+  </main>
+
+  <footer>
+    <div class="section">
+      <strong>ROUSTAN ROBERT</strong>
+      <span>support@roustanrobert.com</span>
+    </div>
+  </footer>
+</body>
+</html>

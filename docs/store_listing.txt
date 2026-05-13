@@ -1,0 +1,13 @@
+App name
+ROUSTAN ROBERT
+
+Short description
+Run local quality checks, resources, leads, and shipment logs from one operations board.
+
+Full description
+ROUSTAN ROBERT helps small business teams keep daily operations organized on one Android device. The app brings quality control checklists, resource allocation notes, lead follow-up, and shipment status into a focused mobile workflow.
+
+Teams can review the daily command board, open checklist details, add new quality checks, track lead stages, and monitor dispatch risks without account registration or cloud sync.
+
+Category
+Business
