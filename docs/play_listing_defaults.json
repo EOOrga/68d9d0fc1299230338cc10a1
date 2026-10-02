@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "applications": {
+    "com.taziggg100.roustanrobert": {
+      "title": "ROUSTAN ROBERT",
+      "short_description": "Run local quality checks, resources, leads, and shipment logs from one...",
+      "full_description": "ROUSTAN ROBERT helps small business teams keep daily operations organized on one Android device. The app brings quality control checklists, resource allocation notes, lead follow-up, and shipment status into a focused mobile workflow.\n\nTeams can review the daily command board, open checklist details, add new quality checks, track lead stages, and monitor dispatch risks without account registration or cloud sync.",
+      "source_screenshots": [
+        "docs/screens/1.png",
+        "docs/screens/2.png",
+        "docs/screens/3.png"
+      ],
+      "generated_from": "existing repository listing metadata and README",
+      "generated_at": "2026-10-02T21:25:31.633759+00:00"
+    }
+  }
+}
